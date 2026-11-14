@@ -16,24 +16,27 @@ int main()
     while (tour != 9)
     {
     tab1(grille);
-        if (tour % 2 == 0)
+        while (choix < 1 || choix > 9 || grille[l][c] != ' ')
         {
-            printf("\n");
-            printf("choisissez une case (1-9) : ");
-            scanf("%d", &choix);
-            l = (choix - 1) / 3;
-            c = (choix - 1) % 3;
-            grille[l][c] = joueur;
-        } 
-        else
-        {
-            srand(time(NULL));
-            choix = rand() % 9 + 1;
-            l = (choix - 1) / 3;
-            c = (choix - 1) % 3;
-            grille[l][c] = ordi;
+            if (tour % 2 == 0)
+            {
+                printf("\n");
+                printf("choisissez une case (1-9) : ");
+                scanf("%d", &choix);
+                l = (choix - 1) / 3;
+                c = (choix - 1) % 3;
+                grille[l][c] = joueur;
+            } 
+            else
+            {
+                srand(time(NULL));
+                choix = rand() % 9 + 1;
+                l = (choix - 1) / 3;
+                c = (choix - 1) % 3;
+                grille[l][c] = ordi;
+            }
         }
-    tour++;
+        tour++;
     }
     tab1(grille);
     return 0;
