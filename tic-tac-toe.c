@@ -16,7 +16,7 @@ int main()
     while (tour != 9)
     {
     tab1(grille);
-        if (tour == 0 || tour == 2 || tour == 4 || tour == 6 || tour == 8)
+        if (tour % 2 == 0)
         {
             printf("\n");
             printf("choisissez une case (1-9) : ");
