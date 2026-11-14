@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "tableau.h"
+#include <time.h>
+
+int main()
+{
+    char grille[3][3] = {{' ',' ',' '}, {' ',' ',' '}, {' ',' ',' '}};
+    char joueur = 'X';
+    char ordi = 'O';
+    int choix;
+    int l;
+    int c;
+    int tour = 0;
+
+    while (tour != 9)
+    {
+    tab1(grille);
+        if (tour == 0 || tour == 2 || tour == 4 || tour == 6 || tour == 8)
+        {
+            printf("\n");
+            printf("choisissez une case (1-9) : ");
+            scanf("%d", &choix);
+            l = (choix - 1) / 3;
+            c = (choix - 1) % 3;
+            grille[l][c] = joueur;
+        } 
+        else
+        {
+            srand(time(NULL));
+            choix = rand() % 9 + 1;
+            l = (choix - 1) / 3;
+            c = (choix - 1) % 3;
+            grille[l][c] = ordi;
+        }
+    tour++;
+    }
+    tab1(grille);
+    return 0;
+}
