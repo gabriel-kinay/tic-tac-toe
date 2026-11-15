@@ -37,10 +37,17 @@ int main()
                 //demande une case et l'assimile ensuite a choix
                 printf("choisissez une case (1-9) : ");
                 scanf("%d", &choix);
+                // on verifie bien que le joueur choisit un case qui est dans la grille
                 if (choix != 1 && choix != 2 && choix != 3 && choix != 4 && choix != 5 && choix != 6 && choix != 7 && choix != 8 && choix != 9 )
                 {
+                    //si ce n'est pas le cas on arrete la partie
                     printf("Vous n'avez pas respecté la consigne la partie est finit ");
                     exit(0);
+                }
+                //petit message qui aide le joueur a se rendre compte que la case est deja prise
+                if (choix != ' ')
+                {
+                    printf("cette case est déjà choisie");
                 }
             } 
             else
@@ -57,10 +64,12 @@ int main()
             }
         //enfin on finit par afficher le signe du joueur a la case correspondante
         }
+        //verifie que si c'est au tour du joueur ou non pour savoir quel signe ajouté
         if (tour % 2 == 0)
             grille[l][c] = joueur;
         else
             grille[l][c] = ordi;
+        // utilisation de la fonction victoire pour savoir si un des joueur a gagné
         if (victoire(grille, joueur))
         {
             tab1(grille);
@@ -75,10 +84,13 @@ int main()
             printf("vous avez perdu\n");
             return 0;
         }
+        //sert juste a rendre le jeu plus lisible
         printf("\n");
         //on passe au tour suivant
         tour++;
     }
+    //s'il n'y a pas de victoire d'un camp ou de l'autre avant la fin de tous les tours alors c'est qu'il y a egalité
+    //je l'ai mis hors de la boucle car sinon il y aurait egalité toujours au premier tour
     tab1(grille);
     printf("\n");
     printf("il y a égalité");
