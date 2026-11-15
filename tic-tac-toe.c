@@ -14,10 +14,7 @@ int main()
     //creation des deux joueur different avec chacun leur signe
     char joueur = 'X';
     char ordi = 'O';
-    char res;
     int tour = 0;
-    //sert a afficher la grille
-    tab1(grille);
     //ceci sert a avoir un nobre different à chaque tour
     srand(time(NULL));
     // on execute la boucle tantque l'on a pas remplit toutes les cases (plus tard j'ajouterais le ou tant que l'on a pas gagne)
@@ -26,11 +23,12 @@ int main()
     int choix = 0;
     int l = 0;
     int c = 0;
+    //sert a afficher la grille
     tab1(grille);
         //securite qui sert a voir si la personne choisit un nobre utilisable
         //il ne peut pas choisir des chiffres qui pourrait ne pas correspondre a une case
         //et il faut que la case choisit soit vide
-        while (choix < 0 || choix > 8 || grille[l][c] != ' ' )
+        while (choix < 1 || choix > 9 || grille[l][c] != ' ' )
         {
             //condition pour voir quelle joueur dois jouer c'est toujours le vrai joueur qui commence
             if (tour % 2 == 0)
@@ -39,6 +37,11 @@ int main()
                 //demande une case et l'assimile ensuite a choix
                 printf("choisissez une case (1-9) : ");
                 scanf("%d", &choix);
+                if (choix != 1 && choix != 2 && choix != 3 && choix != 4 && choix != 5 && choix != 6 && choix != 7 && choix != 8 && choix != 9 )
+                {
+                    printf("Vous n'avez pas respecté la consigne la partie est finit ");
+                    exit(0);
+                }
             } 
             else
             {
@@ -46,7 +49,7 @@ int main()
                 choix = rand() % 9 + 1;
             }
             //cette condition sert juste a ne pas calculer les coordonnees des chiffres qui ne sont pas dans l'intervalles
-            if (choix >= 0 && choix <= 8)   
+            if (choix >= 1 && choix <= 9)   
             {
                 //le calcul fait en sorte d'avoir le resultat entre 0 et 2
                 l = (choix - 1) / 3;
@@ -61,19 +64,23 @@ int main()
         if (victoire(grille, joueur))
         {
             tab1(grille);
+            printf("\n");
             printf("vous avez gagné\n");
             return 0;
         }
         if (victoire(grille, ordi))
         {
             tab1(grille);
+            printf("\n");
             printf("vous avez perdu\n");
             return 0;
         }
+        printf("\n");
         //on passe au tour suivant
         tour++;
     }
     tab1(grille);
+    printf("\n");
     printf("il y a égalité");
     return 0;
 }
