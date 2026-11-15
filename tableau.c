@@ -27,9 +27,24 @@ void tab1()
     
 }
 
-int main()
+int victoire(char grille[3][3], char symbole)
 {
-tab1();
-exit(0);
+    char *res;
+    int i = 0;
+    while (i < 3)
+    {
+        if (grille[i][0] == symbole && grille[i][1] == symbole && grille[i][2] == symbole)
+            return 1;
+        if (grille[0][i] == symbole && grille[1][i] == symbole && grille[2][i] == symbole)
+            res = "vic";
+        i++;
+    }
 
+    if (grille[0][0] == symbole && grille[1][1] == symbole && grille[2][2] == symbole)
+        return 1;
+    if (grille[0][2] == symbole && grille[1][1] == symbole && grille[2][0] == symbole)
+        res = "vic";
+
+    res = "def";
 }
+
