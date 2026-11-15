@@ -14,6 +14,7 @@ int main()
     //creation des deux joueur different avec chacun leur signe
     char joueur = 'X';
     char ordi = 'O';
+    char res;
     int tour = 0;
     //sert a afficher la grille
     tab1(grille);
@@ -57,9 +58,22 @@ int main()
             grille[l][c] = joueur;
         else
             grille[l][c] = ordi;
+        if (victoire(grille, joueur))
+        {
+            tab1(grille);
+            printf("vous avez gagné\n");
+            return 0;
+        }
+        if (victoire(grille, ordi))
+        {
+            tab1(grille);
+            printf("vous avez perdu\n");
+            return 0;
+        }
         //on passe au tour suivant
         tour++;
     }
     tab1(grille);
+    printf("il y a égalité");
     return 0;
 }
